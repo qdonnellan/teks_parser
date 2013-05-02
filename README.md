@@ -5,6 +5,9 @@
 ## What is this?
 This is a python parser for the Texas Essential Knowledge and Skills (TEKS). It's function is quite simple: Read the HTML data from the TEKS websites, then turn it into useful json which can be iterated by your webapp. Feel free to download remix, etc. as I've attached an MIT license to this thing.
 
+Visit the offical website of the TEKS for more information on them: http://www.tea.state.tx.us/index2.aspx?id=6148
+
+
 ## How to use?
 
 ### Step 1: Run fetch.py
@@ -26,6 +29,20 @@ If you wanted to iterate through all of the chapters and print out the title and
 
     for chapter in teks.chapters:
       print chapter.id, chapter.title
+
+If you wanted to print every single substandard, you could do:
+
+    form teks import teks
+
+    for chapter in teks.chapters:
+      for subchapter in chapter.subchapter:
+        for section in subchapter.sections:
+          for domain in section.domains:
+            for standard in domain.standards:
+              for substandard in standard.substandard:
+                print substandard.title.encode('ascii', 'ignore')
+
+Yeah, there are strange ascii embedded in the TEKS. Take that up with the State Board of Education!
 
 
 ### Not allergic to bitcoin
